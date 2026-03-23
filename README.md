@@ -284,15 +284,20 @@ No estudo, foi utilizado o espectro de massas da **dopamina** como exemplo de de
 
 ```txt
 MACES/
-├── README.md
-├── requirements.txt
-├── manage.py
-├── app/
+├── GA/
+├── accounts
+├── backend/
+├── home/
+├── simulation/
 ├── static/
 ├── templates/
-├── models/
-├── data/
-└── notebooks/
+├── .gitignore
+├── JS_auto_file.txt
+├── LICENCE
+├── README.md
+├── laricitrin_C16_H12_O8_332_05.csv
+├── manage.py
+└── requirements.txt
 ```
 
 > A estrutura real pode variar conforme a organização atual do repositório.
