@@ -1,0 +1,44 @@
+{% extends 'simulation/base_simulations.html' %}
+
+{% load static %}
+
+{% block styles %}
+
+<link rel="stylesheet" href="{% static 'simulation/css/results_list.css' %}">
+
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Histórico de Simulações</h1>
+        <hr/>
+        <table id="simulations-table">
+            <thead>
+                <tr>
+                    <th>Nome da Simulação</th>
+                    <th>Data de Criação</th>
+                    <th>Resultados</th>
+                    <th>Ações</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for simulacao in simulacoes %}
+                <tr>
+                    <td>{{ simulacao.nome }}</td>
+                    <td>{{ simulacao.data_criacao|date:"d/m/Y H:i" }}</td>
+                    <td>
+                        <a href="{% url 'process_mass_values' simulacao.id %}">Ver Resultados</a>
+                    </td>
+                    <td>
+                        <form method="post" action="{% url 'deletar_simulacao' simulacao.id %}" onsubmit="return confirm('Tem certeza que deseja deletar esta simulação?');">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-delete">Deletar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

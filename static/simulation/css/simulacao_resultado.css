@@ -1,0 +1,235 @@
+/* Variáveis de cor */
+:root {
+    --primary-bg: #FFFFFF;           /* Fundo principal claro */
+    --secondary-bg: #FBFBFF;         /* Fundo secundário muito claro */
+    --highlight-color: #F4E285;      /* Amarelo para atenção */
+    --attention-color: #F4A259;      /* Laranja para alertas críticos */
+    --error-color: #BC4B51;          /* Vermelho para erros e ações críticas */
+    --success-color: #379634;        /* Verde para confirmações e ações positivas */
+    --text-color: #080F0F;           /* Cor do texto principal */
+    --border-color: #EFE9F4;         /* Cor das bordas neutras */
+    --muted-text: #7F8C8D;           /* Cor de texto suavizado */
+    --footer-bg: #7A7D7D;            /* Cor de fundo do rodapé */
+    --input-bg: #FFFBFE;             /* Fundo dos campos de entrada */
+    --input-border: #D0CFCF;         /* Borda dos campos de entrada */
+    --btn-text: #FFFFFF;             /* Texto dos botões */
+    --grafico-bg: #7B904B;           /* Fundo dos gráficos */
+    --color-focus: #94FBAB;          /* Cor de foco */
+}
+
+/* Estilos Gerais */
+body {
+    background-color: var(--secondary-bg);
+    color: var(--text-color);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--primary-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
+}
+
+h1 {
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+hr {
+    border: none;
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(to right, #FFFBFE,#7B904B, #D0CFCF );
+    border-radius: 5px;
+    opacity: 0.8;
+    margin: 20px auto;
+}
+
+/* Estilização da Tabela de Resultados */
+table#results-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table#results-table th, 
+table#results-table td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
+}
+
+table#results-table th {
+    background-color: var(--input-border);
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+table#results-table td {
+    background-color: var(--input-bg);
+    color: var(--text-color);
+}
+
+/* Estilização dos Botões de Navegação */
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.navigation-buttons button {
+    padding: 10px 20px;
+    background-color: var(--footer-bg);
+    color: var(--btn-text);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.navigation-buttons button:hover {
+    background-color: var(--input-border);
+    color: var(--text-color);
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .container {
+        padding: 18px;
+        margin: 18px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    th, td {
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .navigation-buttons button {
+        padding: 8px 16px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+        margin: 15px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    th, td {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .navigation-buttons button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    table#results-table th, 
+    table#results-table td {
+        padding: 8px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 12px;
+        margin: 12px;
+    }
+
+    h1 {
+        font-size: 18px;
+    }
+
+    hr {
+        width: 90%;
+    }
+
+    table#results-table th, 
+    table#results-table td {
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    .navigation-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navigation-buttons button {
+        padding: 6px 12px;
+        font-size: 12px;
+        width: 100%;
+        margin-top: 5px;
+    }
+}
+
+@media (max-width: 320px) {
+    .container {
+        padding: 10px;
+        margin: 10px;
+    }
+
+    h1 {
+        font-size: 16px;
+    }
+
+    hr {
+        width: 80%;
+    }
+
+    table#results-table th, 
+    table#results-table td {
+        padding: 4px;
+        font-size: 10px;
+    }
+
+    .navigation-buttons button {
+        padding: 5px 10px;
+        font-size: 10px;
+        width: 100%;
+        margin-top: 5px;
+    }
+}
+
+/* Estilização para telas muito pequenas */
+@media (max-width: 240px) {
+    .container {
+        padding: 8px;
+        margin: 8px;
+    }
+
+    h1 {
+        font-size: 14px;
+    }
+
+    table#results-table th, 
+    table#results-table td {
+        padding: 2px;
+        font-size: 8px;
+    }
+
+    .navigation-buttons button {
+        padding: 4px 8px;
+        font-size: 8px;
+        width: 100%;
+    }
+}

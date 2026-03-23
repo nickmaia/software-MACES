@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'home/css/contact.css' %}" />
+  
+
+{% endblock %}
+
+{% block content %}
+  <section class="contact">
+    <div class="content">
+      <h1>Entre em Contato</h1>
+      <hr class="separator" />
+      <p>Estamos aqui para ajudar! Preencha o formulário abaixo para nos enviar uma mensagem, ou entre em contato diretamente pelo nosso e-mail. Adoraríamos ouvir suas sugestões, dúvidas ou qualquer comentário que possa ter.</p>
+
+      <form class="contact-form">
+        <div class="form-group">
+          <label for="name"><i class="fas fa-user"></i> Nome:</label>
+          <input type="text" id="name" placeholder="Seu nome" required />
+        </div>
+        <div class="form-group">
+          <label for="email"><i class="fas fa-envelope"></i> Email:</label>
+          <input type="email" id="email" placeholder="Seu email" required />
+        </div>
+        <div class="form-group">
+          <label for="subject"><i class="fas fa-tag"></i> Assunto:</label>
+          <input type="text" id="subject" placeholder="Assunto da sua mensagem" required />
+        </div>
+        <div class="form-group">
+          <label for="message"><i class="fas fa-comment"></i> Mensagem:</label>
+          <textarea id="message" placeholder="Sua mensagem" required></textarea>
+        </div>
+        <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Enviar</button>
+      </form>
+      <br />
+      <p>
+        Ou, se preferir, entre em contato diretamente pelo nosso e-mail: <a href="mailto:contato@maces.com">contato@maces.com</a> <br /> Nosso horário de atendimento: Segunda a Sexta, das 9h às 18h.
+      </p>
+      <p></p>
+    </div>
+  </section>
+{% endblock %}

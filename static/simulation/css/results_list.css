@@ -1,0 +1,110 @@
+/* Container styling */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Table styling */
+#simulations-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Table headers */
+#simulations-table th {
+    background-color: #D0CFCF;
+    color: #080F0F;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Table rows */
+#simulations-table td {
+    padding: 10px;
+    border-bottom: 1px solid #D0CFCF;
+}
+
+/* Action links */
+#simulations-table td a {
+    color: #7B904B;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#simulations-table td a:hover {
+    text-decoration: underline;
+}
+
+.btn-delete {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 3px;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;
+}
+
+
+/* Responsive styling */
+@media screen and (max-width: 768px) {
+    /* Adjust table for smaller screens */
+    #simulations-table, 
+    #simulations-table thead, 
+    #simulations-table tbody, 
+    #simulations-table th, 
+    #simulations-table td, 
+    #simulations-table tr {
+        display: block;
+    }
+
+    /* Hide table headers */
+    #simulations-table thead tr {
+        display: none;
+    }
+
+    /* Display table rows as blocks */
+    #simulations-table tr {
+        margin-bottom: 15px;
+        border-bottom: 2px solid #D0CFCF;
+    }
+
+    /* Format table cells for smaller screens */
+    #simulations-table td {
+        padding-left: 50%;
+        position: relative;
+        text-align: left;
+        border: none;
+    }
+
+    /* Add labels before table cell content */
+    #simulations-table td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        width: calc(50% - 20px);
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+    }
+}
+
+/* Small screens styling */
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    /* Increase padding for smaller screens */
+    #simulations-table td {
+        padding: 15px;
+    }
+}

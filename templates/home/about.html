@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'home/css/about.css' %}" />
+{% endblock %}
+{% block content %}
+  <section class="about">
+    <div class="container">
+      <h1>Sobre Nós</h1>
+      <hr />
+      <p>Somos uma equipe dedicada de químicos e engenheiros que acredita no poder da tecnologia para revolucionar a análise estrutural de moléculas orgânicas. O MACES foi desenvolvido para facilitar e agilizar a interpretação de espectros de massas, combinando algoritmos genéticos avançados com uma interface amigável. Nosso compromisso é fornecer ferramentas de ponta para pesquisadores, estudantes e profissionais da química.</p>
+      <a href="{% url 'contact' %}" class="btn">Entre em Contato</a>
+    </div>
+  </section>
+
+  <section class="team">
+    <div class="container">
+      <h1>Nossa Equipe</h1>
+      <hr />
+      <div class="team-carousel">
+        <div class="team-members">
+          <div class="member">
+            <img src="{% static 'images/team_1.jpg' %}" alt="Bob Brown" />
+            <h3>Isaac Miranda Camargos</h3>
+            <p>Desenvolvedor de IA</p>
+          </div>
+          <div class="member">
+            <img src="{% static 'images/team_2.jpg' %}" alt="Mary Smith" />
+            <h3>Nicole Maia Argondizzi</h3>
+            <p>Desenvolvedora Backend</p>
+          </div>
+          <div class="member">
+            <img src="{% static 'images/team_3.jpg' %}" alt="Nick Dark" />
+            <h3>Lucas Eduardo Duarte Martins</h3>
+            <p>Colaborador</p>
+          </div>
+          <!-- Adicione mais membros conforme necessário -->
+          <div class="member">
+            <img src="{% static 'images/team_4.jpg' %}" alt="Jane Doe" />
+            <h3>Leandro Cruvinel Lemes</h3>
+            <p>Colaborador</p>
+          </div>
+          <div class="member">
+            <img src="{% static 'images/team_5.jpg' %}" alt="John Smith" />
+            <h3>Geoffroy Roger Pointer Malpass</h3>
+            <p>Colaborador</p>
+          </div>
+          <div class="member">
+            <img src="{% static 'images/team_6.jpg' %}" alt="Alice Johnson" />
+            <h3>Ana Claudia Granato Malpass</h3>
+            <p>Orientadora</p>
+          </div>
+        </div>
+        <div class="carousel-indicators team-dots">
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mission-vision-values">
+    <div class="container">
+      <h1>Missão, Visão e Valores</h1>
+      <hr />
+      <div class="cards">
+        <div class="section">
+          <i class="fas fa-bullseye"></i> <!-- Ícone para Missão -->
+          <h2>Missão</h2>
+          <p>Desenvolver soluções inovadoras que simplifiquem e aprimorem a análise estrutural de compostos orgânicos, capacitando pesquisadores e profissionais a alcançarem resultados precisos e confiáveis.</p>
+        </div>
+        <div class="section">
+          <i class="fas fa-eye"></i> <!-- Ícone para Visão -->
+          <h2>Visão</h2>
+          <p>Ser a principal referência global em ferramentas de análise espectrométrica, contribuindo para avanços significativos na ciência química e educação através de tecnologias de ponta.</p>
+        </div>
+        <div class="section">
+          <i class="fas fa-star"></i> <!-- Ícone para Valores -->
+          <h2>Valores</h2>
+          <ul>
+            <li>Inovação: Estar na vanguarda do desenvolvimento tecnológico na química analítica.</li>
+            <li>Precisão: Garantir que cada análise seja conduzida com rigor científico.</li>
+            <li>Excelência: Buscar a melhoria contínua em cada aspecto do nosso software.</li>
+            <li>Colaboração: Fomentar parcerias que impulsionem o progresso científico.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
+{% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'home/js/carousel.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,389 @@
+{% extends 'simulation/base_simulations.html' %}
+
+{% load static %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'simulation/css/simulacao_massa.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1>Gráfico Visual dos Dados</h1>
+    <hr />
+    <!-- Gráfico -->
+    <canvas id="massChart" width="400" height="200"></canvas>
+    <br />
+    <h1>Insira os valores das massas</h1>
+    <hr />
+
+    <form id="mass-form" method="POST" action="{% url 'simulation_with_mass' %}">
+      {% csrf_token %}
+      <div>
+        <label for="nome_simulacao">Nome da Simulação:</label>
+        <input type="text" id="nome_simulacao" name="nome_simulacao" required />
+      </div>
+      <br />
+      <div>
+        <label for="massa_alvo">Massa a ser Encontrada:</label>
+        <input type="number" id="massa_alvo" name="massa_alvo" step="0.00000000000001" min="0" max="2681" required />
+        <span id="massa_alvo_error" style="color: red; display: none;">O valor deve estar entre 0 e 2681.</span>
+    </div>
+      <br />
+      <div>
+        <label for="csv_file">Carregar Arquivo CSV:</label>
+        <input type="file" id="csv_file" name="csv_file" accept=".csv" />
+        <button type="button" onclick="loadCSV()" class="btn-add"><i class="fas fa-upload"></i> Ler CSV</button>
+      </div>
+
+      <table id="data-table">
+        <thead>
+          <tr>
+            <th>Massa/Carga</th>
+            <th>Intensidade</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <input type="number" name="mass" value="34" class="input-field" />
+            </td>
+            <td>
+              <input type="number" name="intensity" value="100" class="input-field" />
+            </td>
+            <td class="action-buttons">
+              <button type="button" onclick="removeRow(this)" class="btn-icon-remove"><i class="fas fa-times"></i></button>
+              <button type="button" onclick="editRow(this)" class="btn-icon-edit"><i class="fas fa-pencil-alt"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button type="button" onclick="addRow()" class="btn-add"><i class="fas fa-plus"></i> Adicionar Linha</button>
+      <div class="navigation-buttons">
+        <button type="submit" onclick="goNext()" class="btn-nav">Próximo</button>
+      </div>
+
+      
+    </form>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <!-- Inclua a biblioteca Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx = document.getElementById('massChart').getContext('2d')
+    let massChart = new Chart(ctx, {
+      type: 'line', // Tipo de gráfico (linha para espectrometria de massa)
+      data: {
+        labels: [], // Rótulos para o eixo X (massas)
+        datasets: [
+          {
+            label: 'Intensidade',
+            data: [], // Dados para o eixo Y (intensidades)
+            borderColor: '#7B904B',
+            backgroundColor: 'rgba(123, 144, 75, 0.5)',
+            fill: true,
+            tension: 0.1
+          }
+        ]
+      },
+      options: {
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Massa/Carga'
+            }
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Intensidade'
+            },
+            beginAtZero: true
+          }
+        }
+      }
+    })
+    
+    function updateChart() {
+      const massas = []
+      const intensidades = []
+    
+      const rows = document.getElementById('data-table').getElementsByTagName('tbody')[0].rows
+      Array.from(rows).forEach((row) => {
+        const massInput = row.cells[0].getElementsByTagName('input')[0]
+        const intensityInput = row.cells[1].getElementsByTagName('input')[0]
+    
+        // Considera apenas os inputs que estão desabilitados (travados)
+        if (massInput.disabled && intensityInput.disabled) {
+          const mass = parseFloat(massInput.value)
+          const intensity = parseFloat(intensityInput.value)
+          if (!isNaN(mass) && !isNaN(intensity)) {
+            // Verifica se os valores não estão vazios e são números válidos
+            massas.push({ mass, intensity })
+          }
+        }
+      })
+    
+      // Ordena os dados pelo valor de massa/carga
+      massas.sort((a, b) => a.mass - b.mass)
+    
+      // Separa os valores ordenados para atualizar o gráfico
+      const sortedMassas = massas.map((item) => item.mass)
+      const sortedIntensidades = massas.map((item) => item.intensity)
+    
+      massChart.data.labels = sortedMassas
+      massChart.data.datasets[0].data = sortedIntensidades
+      massChart.update()
+    }
+    
+    function addRow() {
+      const table = document.getElementById('data-table').getElementsByTagName('tbody')[0]
+    
+      // Trava todas as células existentes antes de adicionar uma nova linha
+      const existingRows = table.rows
+      Array.from(existingRows).forEach((row) => {
+        const inputs = row.querySelectorAll('.input-field')
+        inputs.forEach((input) => {
+          input.disabled = true // Trava os campos existentes
+        })
+      })
+    
+      const newRow = document.createElement('tr')
+      let cell1 = document.createElement('td')
+      let cell2 = document.createElement('td')
+      let cell3 = document.createElement('td')
+    
+      const inputMass = document.createElement('input')
+      inputMass.type = 'number'
+      inputMass.name = 'mass'
+      inputMass.className = 'input-field'
+      inputMass.addEventListener('change', lockInput)
+    
+      const inputIntensity = document.createElement('input')
+      inputIntensity.type = 'number'
+      inputIntensity.name = 'intensity'
+      inputIntensity.className = 'input-field'
+      inputIntensity.addEventListener('change', lockInput)
+    
+      cell1.appendChild(inputMass)
+      cell2.appendChild(inputIntensity)
+      cell3.innerHTML = `
+                        <button type="button" onclick="removeRow(this)" class="btn-icon-remove"><i class="fas fa-times"></i></button>
+                        <button type="button" onclick="editRow(this)" class="btn-icon-edit"><i class="fas fa-pencil-alt"></i></button>`
+    
+      newRow.appendChild(cell1)
+      newRow.appendChild(cell2)
+      newRow.appendChild(cell3)
+    
+      table.appendChild(newRow)
+    }
+    
+    function lockInput(event) {
+      const input = event.target
+      const row = input.closest('tr')
+      const massInput = row.cells[0].getElementsByTagName('input')[0]
+      const intensityInput = row.cells[1].getElementsByTagName('input')[0]
+    
+      if (massInput.value && intensityInput.value) {
+        // Verifica se os hidden inputs já foram criados para essa linha
+        const existingHiddenMass = row.querySelector('input[type="hidden"][name="mass"]')
+        const existingHiddenIntensity = row.querySelector('input[type="hidden"][name="intensity"]')
+    
+        if (!existingHiddenMass && !existingHiddenIntensity) {
+          // Cria inputs hidden para enviar os valores, apenas se não existirem
+          const hiddenMassInput = document.createElement('input')
+          hiddenMassInput.type = 'hidden'
+          hiddenMassInput.name = 'mass'
+          hiddenMassInput.value = massInput.value
+    
+          const hiddenIntensityInput = document.createElement('input')
+          hiddenIntensityInput.type = 'hidden'
+          hiddenIntensityInput.name = 'intensity'
+          hiddenIntensityInput.value = intensityInput.value
+    
+          row.appendChild(hiddenMassInput)
+          row.appendChild(hiddenIntensityInput)
+        } else {
+          // Atualiza os valores dos hidden inputs se já existirem
+          existingHiddenMass.value = massInput.value
+          existingHiddenIntensity.value = intensityInput.value
+        }
+    
+        // Trava os inputs visíveis
+        massInput.disabled = true
+        intensityInput.disabled = true
+    
+        updateChart()
+      }
+    }
+    
+    function editRow(btn) {
+      const row = btn.parentNode.parentNode
+      const inputs = row.querySelectorAll('.input-field')
+    
+      inputs.forEach((input) => {
+        input.disabled = false // Habilita os campos para edição
+        input.addEventListener(
+          'change',
+          function () {
+            lockInput({ target: input }) // Trava novamente o campo e atualiza o gráfico após edição
+          },
+          { once: true }
+        ) // Garante que o evento seja executado apenas uma vez após a edição
+      })
+    }
+    
+    function validateRows() {
+      const rows = document.getElementById('data-table').getElementsByTagName('tbody')[0].rows
+    
+      console.log('Verificando as linhas antes de submeter:')
+    
+      for (const row of rows) {
+        const massInput = row.cells[0].getElementsByTagName('input')[0]
+        const intensityInput = row.cells[1].getElementsByTagName('input')[0]
+    
+        console.log(`Massa: ${massInput.value}, Intensidade: ${intensityInput.value}, Disabled: ${massInput.disabled}, ${intensityInput.disabled}`)
+    
+        if (!massInput.value || !intensityInput.value) {
+          alert('Por favor, insira valores válidos para todas as linhas antes de prosseguir.')
+          return false // Interrompe a submissão do formulário
+        }
+      }
+      return true // Permite a submissão do formulário
+    }
+    
+    function removeRow(btn) {
+      const row = btn.parentNode.parentNode
+      row.remove()
+      updateChart()
+    }
+    
+    function goNext() {
+      const rows = document.getElementById('data-table').getElementsByTagName('tbody')[0].rows
+    
+      Array.from(rows).forEach((row) => {
+        const massInput = row.cells[0].getElementsByTagName('input')[0]
+        const intensityInput = row.cells[1].getElementsByTagName('input')[0]
+    
+        let hiddenMassInput = row.querySelector('input[type="hidden"][name="mass"]')
+        let hiddenIntensityInput = row.querySelector('input[type="hidden"][name="intensity"]')
+    
+        if (!hiddenMassInput) {
+          hiddenMassInput = document.createElement('input')
+          hiddenMassInput.type = 'hidden'
+          hiddenMassInput.name = 'mass'
+          hiddenMassInput.value = massInput.value
+          row.appendChild(hiddenMassInput)
+        } else {
+          hiddenMassInput.value = massInput.value
+        }
+    
+        if (!hiddenIntensityInput) {
+          hiddenIntensityInput = document.createElement('input')
+          hiddenIntensityInput.type = 'hidden'
+          hiddenIntensityInput.name = 'intensity'
+          hiddenIntensityInput.value = intensityInput.value
+          row.appendChild(hiddenIntensityInput)
+        } else {
+          hiddenIntensityInput.value = intensityInput.value
+        }
+    
+        massInput.disabled = true
+        intensityInput.disabled = true
+      })
+    
+      if (validateRows()) {
+        document.getElementById('mass-form').submit()
+      }
+    }
+    
+    // Atualiza o gráfico ao carregar a página
+    updateChart()
+  </script>
+
+  <script>
+    // Botão que carrega os dados do arquivo CSV
+    function loadCSV() {
+      const input = document.getElementById('csv_file')
+      const reader = new FileReader()
+    
+      reader.onload = function (e) {
+        const text = e.target.result
+        parseCSV(text)
+      }
+    
+      if (input.files.length > 0) {
+        reader.readAsText(input.files[0])
+      } else {
+        alert('Por favor, selecione um arquivo CSV.')
+      }
+    }
+    
+    function parseCSV(text) {
+      const rows = text.split('\n').map((row) => row.split(','))
+      const tableBody = document.getElementById('data-table').getElementsByTagName('tbody')[0]
+    
+      // Limpar tabela existente
+      tableBody.innerHTML = ''
+    
+      rows.forEach((row, index) => {
+        if (row.length >= 2) {
+          // Verifica se a linha possui pelo menos massa e intensidade
+          const newRow = document.createElement('tr')
+    
+          const cell1 = document.createElement('td')
+          const inputMass = document.createElement('input')
+          inputMass.type = 'number'
+          inputMass.name = 'mass'
+          inputMass.className = 'input-field'
+          inputMass.value = parseFloat(row[0])
+          inputMass.disabled = true
+          cell1.appendChild(inputMass)
+    
+          const cell2 = document.createElement('td')
+          const inputIntensity = document.createElement('input')
+          inputIntensity.type = 'number'
+          inputIntensity.name = 'intensity'
+          inputIntensity.className = 'input-field'
+          inputIntensity.value = parseFloat(row[1])
+          inputIntensity.disabled = true
+          cell2.appendChild(inputIntensity)
+    
+          const cell3 = document.createElement('td')
+          cell3.innerHTML = `
+                    <button type="button" onclick="removeRow(this)" class="btn-icon-remove"><i class="fas fa-times"></i></button>
+                    <button type="button" onclick="editRow(this)" class="btn-icon-edit"><i class="fas fa-pencil-alt"></i></button>`
+    
+          newRow.appendChild(cell1)
+          newRow.appendChild(cell2)
+          newRow.appendChild(cell3)
+          tableBody.appendChild(newRow)
+        }
+      })
+    
+      updateChart() // Atualizar o gráfico após o carregamento do CSV
+    }
+
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const massaAlvo = document.getElementById('massa_alvo');
+        const massaAlvoError = document.getElementById('massa_alvo_error');
+        const minValue = 0;
+        const maxValue = 2681;
+
+        massaAlvo.addEventListener('input', function() {
+            const value = parseFloat(massaAlvo.value);
+
+            if (value < minValue || value > maxValue) {
+                massaAlvoError.style.display = 'inline';
+            } else {
+                massaAlvoError.style.display = 'none';
+            }
+        });
+    });
+</script>
+{% endblock %}

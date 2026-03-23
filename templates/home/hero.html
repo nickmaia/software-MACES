@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'home/css/hero.css' %}" />
+{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="hero-content">
+    <h1>MACES</h1>
+    <h2>Análise   Molecular Automatizada e Precisa</h2>
+    <p>Desvendando estruturas moleculares com precisão. O MACES oferece uma análise automatizada e detalhada de moléculas orgânicas a partir de espectros de massas, utilizando algoritmos genéticos avançados.</p>
+    <a href="{% url 'login' %}" class="btn"><i class="fas fa-sign-in-alt"></i> Conecte-se</a>
+  </div>
+</section>
+{% endblock %}
+

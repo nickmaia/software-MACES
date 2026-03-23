@@ -1,0 +1,229 @@
+/* Estilos para a seção Sobre Nós */
+.about {
+    background-color: #FFFFFF;
+    text-align: center;
+    padding: 40px 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.about h1 {
+    color: #040403;
+    margin-bottom: 15px;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.about p {
+    color: #7A7D7D;
+    font-size: 18px;
+    margin-top: 10px;
+    text-align: justify;
+    line-height: 1.6;
+}
+
+.about .btn {
+    background-color: #94FBAB;
+    color: #FFFFFF;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 4px;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-weight: bold;
+}
+
+.about .btn:hover {
+    background-color: #D0CFCF;
+    color: #040403;
+    transform: scale(1.05);
+}
+
+/* Estilos para o container */
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.cards {
+    margin-top: 25px;
+}
+
+/* Estilos para a seção Missão, Visão e Valores */
+.mission-vision-values .cards {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.mission-vision-values h1 {
+    color: #040403;
+
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.mission-vision-values h2 {
+    color: #040403;
+
+    text-align: center;
+    font-size: 24px;
+
+}
+
+.mission-vision-values .section {
+    flex: 1 1 calc(33.333% - 20px);
+    padding: 20px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    border: 1px solid #D0CFCF;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.mission-vision-values .section:hover {
+    transform: translateY(-5px);
+}
+
+.mission-vision-values .section i {
+    font-size: 36px;
+    color: #94FBAB;
+    margin-bottom: 15px;
+}
+
+.mission-vision-values h2 {
+    color: #040403;
+    margin-bottom: 10px;
+}
+
+.mission-vision-values p,
+.mission-vision-values ul {
+    color: #7A7D7D;
+    font-size: 16px;
+    text-align: justify;
+}
+
+.mission-vision-values ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+/* Responsividade para Missão, Visão e Valores */
+@media (max-width: 1024px) {
+    .mission-vision-values .section {
+        flex: 1 1 calc(50% - 20px);
+    }
+}
+
+@media (max-width: 768px) {
+    .mission-vision-values .section {
+        flex: 1 1 100%;
+    }
+}
+
+
+/* Estilos para a seção Equipe */
+.team {
+    background-color: #FFFFFF;
+    text-align: center;
+    padding: 40px 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.team h1 {
+    color: #040403;
+    margin-bottom: 20px;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.team-carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.team-members {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%; /* Ajusta a largura para 100% em dispositivos móveis */
+}
+
+
+.member {
+    flex: 1 0 33.3333%;
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.member img {
+    width: 200px; /* Defina uma largura fixa */
+    height: 200px; /* Defina uma altura fixa */
+    object-fit: cover; /* Garante que a imagem seja cortada e centralizada para caber no contêiner */
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.member h3 {
+    color: #040403;
+    margin-bottom: 5px;
+}
+
+.member p {
+    color: #7A7D7D;
+    font-size: 16px;
+}
+
+/* Estilos para os indicadores do carrossel */
+.carousel-indicators {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.carousel-indicators .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    background-color: #D0CFCF;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.carousel-indicators .dot.active {
+    background-color: #94FBAB;
+}
+
+/* Responsividade para exibir apenas uma bolinha em telas pequenas */
+@media (max-width: 768px) {
+    .team-members {
+        flex-wrap: nowrap;
+    }
+
+    .member {
+        flex: 1 0 100%; /* Em dispositivos móveis, mostrar uma bolinha por vez */
+    }
+
+    .member img {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* Estilo para o separador (hr) */
+hr {
+    border: none;
+    height: 3px;
+    width: 50%;
+    background: linear-gradient(to right, #FFFBFE, #94FBAB, #D0CFCF);
+    border-radius: 5px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}

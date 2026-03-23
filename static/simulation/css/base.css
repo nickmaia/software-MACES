@@ -1,0 +1,389 @@
+/* Variáveis de cor */
+:root {
+  --primary-bg: #FFFFFF;           /* Fundo principal claro */
+  --secondary-bg: #FBFBFF;         /* Fundo secundário muito claro */
+  --highlight-color: #F4E285;      /* Amarelo para atenção */
+  --attention-color: #F4A259;      /* Laranja para alertas críticos */
+  --error-color: #BC4B51;          /* Vermelho para delete e erros */
+  --success-color: #379634;        /* Verde para confirmações e ok */
+  --text-color: #080F0F;           /* Cor do texto principal */
+  --border-color: #EFE9F4;         /* Cor das bordas neutras */
+  --muted-text: #7F8C8D;           /* Cor de texto suavizado */
+  --footer-bg: #7A7D7D;            /* Cor de fundo do rodapé */
+  --grafico-bg: #7B904B;           /* Fundo dos gráficos */
+  --color-focus: #94FBAB;          /* Cor de foco */
+}
+
+/* Estilos Gerais */
+html, body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  color: var(--text-color);
+  background-color: var(--primary-bg);
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+  padding: 5px;
+  margin: 0;
+  background-color: var(--primary-bg);
+}
+
+/* Evitar margem acidental */
+header, .navbar {
+  background-color: var(--primary-bg);
+  padding: 15px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid var(--border-color);
+  position: relative;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-header h2 {
+  font-size: 22px;
+  font-weight: 600;  /* Um pouco menos de negrito para um toque mais refinado */
+  color: var(--text-color);
+  margin-bottom: 8px;
+  letter-spacing: 1px;  /* Espacamento ligeiramente aumentado para modernidade */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  /* Fonte moderna e limpa */
+}
+
+.sidebar-subtitle {
+  font-size: 14px;
+  color: var(--muted-text);  /* Texto sutil e respeitável */
+  margin-top: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  /* Mantém a consistência da fonte */
+}
+
+
+
+/* Logo */
+.logo {
+  font-size: 26px;
+  font-weight: bold;
+  color: var(--text-color);
+  text-align: left;
+}
+
+.logo a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 280px;
+  height: 100vh;
+  background-color: var(--secondary-bg);
+  color: var(--text-color);
+  position: fixed;
+  top: 0;
+  left: -280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: left 0.3s ease;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar-header {
+  padding: 20px;
+  text-align: center;
+  background-color: var(--secondary-bg);
+}
+
+
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+}
+
+.sidebar-menu li {
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-menu li a {
+  color: var(--text-color);
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar-menu li a:hover {
+  
+  color: var(--grafico-bg);
+}
+
+/* Sidebar Toggle */
+.sidebar-toggle {
+  font-size: 28px;
+  color: var(--text-color);
+  cursor: pointer;
+  padding: 1px 3px 1px 3px;
+  border-radius: 5px;
+  margin-right: 20px; /* Espaço entre o botão e a logo */
+  display: flex;
+  align-items: center;
+}
+
+.sidebar.active ~ .wrapper .sidebar-toggle {
+  left: 290px;
+}
+
+.sidebar-footer {
+  margin-top: auto; /* Pushes the logout button to the bottom */
+  padding: 10px;
+  background-color: var(--secondary-bg);
+  text-align: center;
+}
+
+.logout-btn {
+  display: inline-block;
+  width: 80%;
+  font-size: 16px;
+  color: var(--text-color);
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 4px;
+  background-color: var(--muted-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: var(--attention-color);
+  color: var(--primary-bg);
+}
+
+/* Navbar */
+.navbar {
+  background-color: var(--primary-bg);
+  padding: 15px 20px;
+  display: flex;
+  justify-content:left;
+  align-items:center;
+  position: relative;
+  z-index: 1000;
+  transition: margin-left 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper .navbar {
+  margin-left: 0;
+}
+
+.sidebar.active ~ .wrapper .navbar {
+  margin-left: 280px;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--footer-bg);
+  color: var(--primary-bg);
+  padding: 2px 0;
+  margin: 0;
+  text-align: center;
+  position: relative;
+  z-index: 1000;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  transition: margin-left 0.3s ease;
+}
+
+
+.sidebar.active ~ .wrapper .footer {
+  margin-left: 280px;
+}
+
+/* Responsividade */
+@media (max-width: 1440px) {
+  .sidebar {
+      width: 300px;
+  }
+
+  .sidebar-toggle {
+      left: 20px;
+  }
+
+  .sidebar.active ~ .wrapper .sidebar-toggle {
+      left: 320px;
+  }
+
+  .sidebar.active ~ .wrapper .navbar {
+      margin-left: 300px;
+  }
+
+  .sidebar.active ~ .wrapper main,
+  .sidebar.active ~ .wrapper .footer {
+      margin-left: 300px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+      width: 250px;
+  }
+
+  .sidebar-toggle {
+      left: 15px;
+  }
+
+  .sidebar.active ~ .wrapper .sidebar-toggle {
+      left: 265px;
+  }
+
+  .sidebar.active ~ .wrapper .navbar {
+      margin-left: 250px;
+  }
+
+  .sidebar.active ~ .wrapper main,
+  .sidebar.active ~ .wrapper .footer {
+      margin-left: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+      width: 200px;
+  }
+
+  .sidebar-toggle {
+      left: 10px;
+  }
+
+  .sidebar.active ~ .wrapper .sidebar-toggle {
+      left: 220px;
+  }
+
+  .sidebar.active ~ .wrapper .navbar {
+      margin-left: 200px;
+  }
+
+  .sidebar.active ~ .wrapper main,
+  .sidebar.active ~ .wrapper .footer {
+      margin-left: 200px;
+  }
+  .sidebar-header h2 {
+    font-size: 18px;
+}
+
+.sidebar-menu li a {
+    font-size: 14px;
+}
+  .logout-btn {
+    font-size: 14px;
+    width: 70%;
+}
+
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+      width: 150px;
+  }
+
+  .sidebar-toggle {
+      left: 10px;
+  }
+
+  .sidebar.active ~ .wrapper .sidebar-toggle {
+      left: 170px;
+  }
+
+  .sidebar.active ~ .wrapper .navbar {
+      margin-left: 150px;
+  }
+
+  .sidebar.active ~ .wrapper main,
+  .sidebar.active ~ .wrapper .footer {
+      margin-left: 150px;
+  }
+
+  .logo {
+      font-size: 20px;
+  }
+
+  .menu-icon {
+      font-size: 22px;
+  }
+}
+
+@media (max-width: 360px) {
+  .sidebar {
+      width: 130px;
+  }
+
+  .sidebar-toggle {
+      left: 5px;
+  }
+
+  .sidebar.active ~ .wrapper .sidebar-toggle {
+      left: 140px;
+  }
+
+  .sidebar.active ~ .wrapper .navbar {
+      margin-left: 130px;
+  }
+
+  .sidebar.active ~ .wrapper main,
+  .sidebar.active ~ .wrapper .footer {
+      margin-left: 120px;
+  }
+
+  .logo {
+      font-size: 18px;
+  }
+
+  .menu-icon {
+      font-size: 20px;
+  }
+}
+
+@media (max-width: 320px) {
+  .sidebar {
+      width: 100px;
+  }
+
+  .sidebar-toggle {
+      left: 5px;
+  }
+
+  .sidebar.active ~ .wrapper .sidebar-toggle {
+      left: 120px;
+  }
+
+  .sidebar.active ~ .wrapper .navbar {
+      margin-left: 100px;
+  }
+
+  .sidebar.active ~ .wrapper main,
+  .sidebar.active ~ .wrapper .footer {
+      margin-left: 100px;
+  }
+
+  .logo {
+      font-size: 16px;
+  }
+
+  .menu-icon {
+      font-size: 18px;
+  }
+}

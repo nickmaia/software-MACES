@@ -1,0 +1,168 @@
+    // A função autoFillData será adicionada aqui.
+    /*function autoFillData() {
+        const dataToFill = [
+            { mass: 50,   intensity: 4.00 },
+            { mass: 50.5, intensity: 0.05 },
+            { mass: 51,   intensity: 25.71 },
+            { mass: 51.5, intensity: 0.19 },
+            { mass: 52,   intensity: 3.00 },
+            { mass: 52.5, intensity: 0.10 },
+            { mass: 53,   intensity: 5.43 },
+            { mass: 53.5, intensity: 0.19 },
+            { mass: 54,   intensity: 1.00 },
+            { mass: 55,   intensity: 4.00 },
+            { mass: 56,   intensity: 0.43 },
+            { mass: 56.5, intensity: 0.05 }, // Pico metastável
+            { mass: 57,   intensity: 0.33 },
+            { mass: 58,   intensity: 1.90 },
+            { mass: 58.5, intensity: 0.05 },
+            { mass: 59,   intensity: 0.05 },
+            { mass: 59.5, intensity: 0.10 }, // Pico metastável
+            { mass: 60,   intensity: 0.10 },
+            { mass: 60.5, intensity: 0.05 },
+            { mass: 61,   intensity: 0.52 },
+            { mass: 61.5, intensity: 0.10 },
+            { mass: 62,   intensity: 1.57 },
+            { mass: 63,   intensity: 3.29 },
+            { mass: 64,   intensity: 1.57 },
+            { mass: 65,   intensity: 0.05 },
+            { mass: 66,   intensity: 3.14 },
+            { mass: 66.5, intensity: 0.14 },
+            { mass: 67,   intensity: 2.86 },
+            { mass: 67.5, intensity: 0.10 },
+            { mass: 68,   intensity: 0.67 },
+            { mass: 69,   intensity: 0.43 },
+            { mass: 70,   intensity: 0.24 },
+            { mass: 71,   intensity: 0.19 },
+            { mass: 72,   intensity: 0.05 },
+            { mass: 73,   intensity: 0.14 },
+            { mass: 74,   intensity: 0.67 },
+            { mass: 74.5, intensity: 1.00 },
+            { mass: 75,   intensity: 0.05 },
+            { mass: 75.5, intensity: 0.14 },
+            { mass: 76,   intensity: 1.48 },
+            { mass: 77,   intensity: 24.29 },
+            { mass: 78,   intensity: 10.48 },
+            { mass: 79,   intensity: 2.71 },
+            { mass: 80,   intensity: 0.81 },
+            { mass: 81,   intensity: 1.05 },
+            { mass: 82,   intensity: 0.67 },
+            { mass: 83,   intensity: 0.14 },
+            { mass: 84,   intensity: 0.10 },
+            { mass: 85,   intensity: 0.10 },
+            { mass: 86,   intensity: 0.14 },
+            { mass: 87,   intensity: 0.14 },
+            { mass: 88,   intensity: 0.19 },
+            { mass: 89,   intensity: 1.57 },
+            { mass: 89.7, intensity: 0.10 }, // Pico metastável
+            { mass: 90,   intensity: 0.57 },
+            { mass: 90.7, intensity: 0.10 }, // Pico metastável
+            { mass: 91,   intensity: 0.76 },
+            { mass: 92,   intensity: 0.43 },
+            { mass: 93,   intensity: 0.43 },
+            { mass: 94,   intensity: 1.76 },
+            { mass: 95,   intensity: 1.43 },
+            { mass: 96,   intensity: 0.52 },
+            { mass: 97,   intensity: 0.14 },
+            { mass: 98,   intensity: 0.05 },
+            { mass: 99,   intensity: 0.05 },
+            { mass: 100.6,intensity: 0.19 }, // Pico metastável
+            { mass: 101, intensity: 0.10 },
+            { mass: 102, intensity: 0.14 },
+            { mass: 103, intensity: 0.24 },
+            { mass: 104, intensity: 0.76 },
+            { mass: 105, intensity: 4.29 },
+            { mass: 106, intensity: 4.29 },
+            { mass: 107, intensity: 3.29 },
+            { mass: 108, intensity: 0.43 },
+            { mass: 109, intensity: 0.48 },
+            { mass: 110, intensity: 0.86 },
+            { mass: 111, intensity: 0.10 },
+            { mass: 112, intensity: 0.05 },
+            { mass: 113, intensity: 0.05 },
+            { mass: 114, intensity: 0.05 },
+            { mass: 115, intensity: 0.19 },
+            { mass: 116, intensity: 0.24 },
+            { mass: 117, intensity: 0.24 },
+            { mass: 118, intensity: 0.14 },
+            { mass: 119, intensity: 0.19 },
+            { mass: 120, intensity: 0.14 },
+            { mass: 121, intensity: 0.24 },
+            { mass: 122, intensity: 0.71 },
+            { mass: 123, intensity: 41.43 },
+            { mass: 124, intensity: 100.00 }, // Pico-base
+            { mass: 125, intensity: 7.62 },
+            { mass: 126, intensity: 0.71 },
+            { mass: 127, intensity: 0.10 },
+            { mass: 128, intensity: 0.10 },
+            { mass: 129, intensity: 0.10 },
+            { mass: 130, intensity: 0.05 },
+            { mass: 131, intensity: 0.05 },
+            { mass: 132, intensity: 0.19 },
+            { mass: 133, intensity: 0.14 },
+            { mass: 134, intensity: 0.52 },
+            { mass: 135, intensity: 0.52 },
+            { mass: 136, intensity: 1.48 },
+            { mass: 137, intensity: 0.33 },
+            { mass: 138, intensity: 0.10 },
+            { mass: 139, intensity: 0.05 },
+            { mass: 141, intensity: 0.19 },
+            { mass: 142, intensity: 0.05 },
+            { mass: 143, intensity: 0.05 },
+            { mass: 144, intensity: 0.05 },
+            { mass: 145, intensity: 0.05 },
+            { mass: 146, intensity: 0.05 },
+            { mass: 147, intensity: 0.05 },
+            { mass: 148, intensity: 0.10 },
+            { mass: 149, intensity: 0.24 },
+            { mass: 150, intensity: 0.33 },
+            { mass: 151, intensity: 1.00 },
+            { mass: 152, intensity: 0.38 },
+            { mass: 153, intensity: 13.33 }, // Íon molecular
+            { mass: 154, intensity: 1.48 },
+            { mass: 155, intensity: 0.19 }
+        ];
+    
+        const table = document.getElementById('data-table').getElementsByTagName('tbody')[0];
+    
+        // Limpa as linhas existentes antes de preencher com novos dados
+        table.innerHTML = '';
+    
+        dataToFill.forEach((item) => {
+            const newRow = document.createElement('tr');
+            let cell1 = document.createElement('td');
+            let cell2 = document.createElement('td');
+            let cell3 = document.createElement('td');
+    
+            const inputMass = document.createElement('input');
+            inputMass.type = 'number';
+            inputMass.name = 'mass';
+            inputMass.className = 'input-field';
+            inputMass.value = item.mass;
+            inputMass.disabled = true; // Trava o campo
+    
+            const inputIntensity = document.createElement('input');
+            inputIntensity.type = 'number';
+            inputIntensity.name = 'intensity';
+            inputIntensity.className = 'input-field';
+            inputIntensity.value = item.intensity;
+            inputIntensity.disabled = true; // Trava o campo
+    
+            cell1.appendChild(inputMass);
+            cell2.appendChild(inputIntensity);
+            cell3.innerHTML = `
+                <button type="button" onclick="removeRow(this)" class="btn-icon-remove"><i class="fas fa-times"></i></button>
+                <button type="button" onclick="editRow(this)" class="btn-icon-edit"><i class="fas fa-pencil-alt"></i></button>`;
+    
+            newRow.appendChild(cell1);
+            newRow.appendChild(cell2);
+            newRow.appendChild(cell3);
+    
+            table.appendChild(newRow);
+        });
+    
+        // Atualiza o gráfico com os novos dados
+        updateChart();
+      }*/
+
+<button type="button" onclick="autoFillData()" class="btn-add"><i class="fas fa-magic"></i> Preencher Dados Automáticos</button>

@@ -1,0 +1,47 @@
+{% extends 'simulation/base_simulations.html' %}
+
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'simulation/css/simulacao_resultado.css' %}">
+    
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Resultados da Simulação: {{ simulacao.nome }}</h1>
+        <hr/>
+        <table id="results-table">
+            <thead>
+                <tr>
+                    <th>Massa</th>
+                    <th>Resultado</th>
+                    <th>Chance</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for resultado in resultados %}
+                <tr>
+                    <td>{{ resultado.massa }}</td>
+                    <td>{{ resultado.resultado }}</td>
+                    <td>{{ resultado.chance }}</td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="navigation-buttons">
+            <button type="button" onclick="goBack()">Voltar</button>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+{% endblock %}

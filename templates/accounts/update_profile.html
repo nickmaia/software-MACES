@@ -1,0 +1,163 @@
+{% extends 'simulation/base_simulations.html' %}
+{% load static %}
+{% load form_tags %} <!-- Certifique-se de carregar o filtro personalizado -->
+
+{% block styles %}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'accounts/css/config.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <h2 class="mb-4 text-center">Atualizar Perfil</h2>
+        <hr/>
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endfor %}
+        {% endif %}
+
+        <form method="post" enctype="multipart/form-data" id="profileUpdateForm">
+          {% csrf_token %}
+
+          <div class="card mb-4">
+            <div class="card-header">
+              <h5>Informações Básicas</h5>
+            </div>
+            <div class="card-body">
+              <div class="mb-3">
+                <label for="id_full_name" class="form-label">Nome Completo</label>
+                {{ profile_form.full_name|add_class:'form-control' }}
+                {% if profile_form.full_name.errors %}
+                  <div class="text-danger">{{ profile_form.full_name.errors }}</div>
+                {% endif %}
+              </div>
+              <div class="mb-3">
+                <label for="id_email" class="form-label">Email</label>
+                {{ profile_form.email|add_class:'form-control' }}
+                {% if profile_form.email.errors %}
+                  <div class="text-danger">{{ profile_form.email.errors }}</div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <div class="card-header">
+              <h5>Alterar Senha</h5>
+            </div>
+            <div class="card-body">
+              <div class="mb-3">
+                <label for="id_old_password" class="form-label">Senha Atual</label>
+                {{ password_form.old_password|add_class:'form-control' }}
+                {% if password_form.old_password.errors %}
+                  <div class="text-danger">{{ password_form.old_password.errors }}</div>
+                {% endif %}
+              </div>
+              <div class="mb-3">
+                <label for="id_new_password1" class="form-label">Nova Senha</label>
+                {{ password_form.new_password1|add_class:'form-control' }}
+                <div id="passwordStrength" class="form-text">
+                  Força da senha: <span></span>
+                </div>
+                {% if password_form.new_password1.errors %}
+                  <div class="text-danger">{{ password_form.new_password1.errors }}</div>
+                {% endif %}
+              </div>
+              <div class="mb-3">
+                <label for="id_new_password2" class="form-label">Confirmar Nova Senha</label>
+                {{ password_form.new_password2|add_class:'form-control' }}
+                {% if password_form.new_password2.errors %}
+                  <div class="text-danger">{{ password_form.new_password2.errors }}</div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          <div class="d-grid gap-2">
+            <button type="button" class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#confirmModal">Salvar Alterações</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Confirmação -->
+  <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-danger" id="confirmModalLabel">Confirmar Alterações</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">Tem certeza de que deseja salvar as alterações feitas em seu perfil?</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary-custom" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" form="profileUpdateForm" class="btn btn-custom">Confirmar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <!-- Bootstrap JS e dependências -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Seu JS personalizado -->
+  <script>
+    // script.js
+    
+    document.addEventListener('DOMContentLoaded', function () {
+      // Pré-visualização da Foto de Perfil
+      const imageInput = document.getElementById('id_image')
+      const imagePreview = document.getElementById('profileImagePreview')
+    
+      if (imageInput) {
+        imageInput.addEventListener('change', function () {
+          const file = this.files[0]
+          if (file) {
+            const reader = new FileReader()
+            reader.onload = function (e) {
+              imagePreview.setAttribute('src', e.target.result)
+            }
+            reader.readAsDataURL(file)
+          }
+        })
+      }
+    
+      // Indicador de Força da Senha
+      const passwordInput = document.getElementById('id_new_password1')
+      const strengthText = document.querySelector('#passwordStrength span')
+    
+      if (passwordInput) {
+        passwordInput.addEventListener('input', function () {
+          const strength = checkPasswordStrength(this.value)
+          strengthText.textContent = strength.text
+          strengthText.style.color = strength.color
+        })
+      }
+    
+      function checkPasswordStrength(password) {
+        let strength = { text: 'Muito Fraca', color: 'red' }
+        if (password.length >= 8) {
+          strength.text = 'Fraca'
+          strength.color = 'orange'
+        }
+        if (password.match(/[A-Z]/) && password.match(/[0-9]/)) {
+          strength.text = 'Média'
+          strength.color = 'gold'
+        }
+        if (password.match(/[!@#$%^&*(),.?":{}|<>]/)) {
+          strength.text = 'Forte'
+          strength.color = 'green'
+        }
+        return strength
+      }
+    })
+  </script>
+{% endblock %}

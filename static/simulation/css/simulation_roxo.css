@@ -1,0 +1,140 @@
+/* Estilos Gerais */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #F0F6F6, #9F84BD, #4B2142); /* Refinando o gradiente */
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 80%;
+    max-width: 960px;
+    padding: 20px;
+    background-color: #FFFFFF; /* Mudança para fundo branco puro */
+    border-radius: 10px; /* Bordas mais arredondadas */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra mais pronunciada */
+    overflow: hidden; /* Garante que nada saia fora das bordas arredondadas */
+}
+
+h1 {
+    color: #4B2142;
+    text-align: center;
+    margin: 24px 0 0 0 ; /* Espaçamento aumentado para melhorar a legibilidade */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th {
+    text-align: left;
+    padding: 12px; /* Padding aumentado para uma sensação mais espaçosa */
+    border-bottom: 2px solid #EAE4F1; /* Linha divisória mais destacada */
+}
+
+th {
+    background-color: #EAE4F1; /* Consistente com outros elementos */
+}
+
+input[type="number"] {
+    width: 100%; /* Ajuste para preencher completamente a célula */
+    padding: 8px;
+    border: none; /* Removendo a borda para um look mais limpo */
+    background-color: #F0F6F6; /* Cor de fundo sutil para a entrada */
+    color: #333; /* Cor de texto escuro para contraste */
+    text-align: center; /* Centraliza o texto */
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #9F84BD;
+    color: #F0F6F6;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #395756; /* Um tom mais escuro para o hover */
+    transform: scale(1.05); /* Efeito de zoom leve para feedback interativo */
+}
+
+td {
+    text-align: center; /* Centraliza o conteúdo da célula */
+    padding: 16px; /* Espaçamento dentro da célula */
+    border-bottom: 2px solid #EAE4F1; /* Linha divisória mais destacada */
+}
+
+td button {
+    margin: 0 10px; /* Aumenta o espaço entre os botões */
+    display: inline-block; /* Mantém os botões alinhados lado a lado */
+    padding: 8px 16px; /* Padding adequado para tornar os botões mais fáceis de clicar */
+    background-color: #9F84BD; /* Cor de fundo dos botões */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s; /* Transições suaves para efeitos visuais */
+}
+
+td button:hover {
+    background-color: #395756; /* Um tom mais escuro para o hover */
+    transform: scale(1.05); /* Efeito de zoom leve para feedback interativo */
+}
+
+
+thead tr th {
+    text-align: center; /* Centraliza o texto do cabeçalho */
+}
+.container button {
+    margin: 10px 0; /* Espaçamento entre botões */
+}
+
+/* Navegação */
+.navigation-buttons {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+    border-radius: 10px; /* Bordas arredondadas para os botões de navegação */
+    
+}
+
+.navigation-buttons button {
+    margin: 0 10px; /* Espaçamento entre botões */
+}
+
+hr {
+    border: none;
+    width: 50%; /* Controla a largura do <hr> para fazer ele mais curto */
+    height: 2px; /* Altura da linha */
+    margin: 5px auto; /* Centraliza horizontalmente e adiciona margem vertical */
+    background: linear-gradient(to right, #F0F6F6, #9F84BD, #4B2142); /* Gradiente de cor */
+    border-radius: 5px; /* Bordas arredondadas para suavidade */
+    opacity: 0.8; /* Opacidade para suavizar a cor */
+}
+
+.btn-icon {
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #9F84BD; /* Cor de tema */
+    font-size: 16px;
+    padding: 5px 10px;
+}
+
+.btn-icon:hover {
+    color: #395756; /* Cor mais escura para hover */
+}
+
+.btn-icon i {
+    margin-right: 5px; /* Espaço entre ícone e texto, se necessário */
+}

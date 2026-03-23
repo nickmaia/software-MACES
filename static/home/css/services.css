@@ -1,0 +1,112 @@
+/* Estilos gerais para a seção de serviços */
+.services {
+    background-color: #FFFFFF;
+    text-align: center;
+    padding: 50px 20px;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.services h1 {
+    color: #040403;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.services hr {
+    border: none;
+    height: 3px;
+    width: 50%;
+    background: linear-gradient(to right, #FFFBFE, #94FBAB, #D0CFCF);
+    border-radius: 5px;
+    margin: 20px auto; /* Centraliza e ajusta a margem */
+}
+
+.services p {
+    font-size: 18px;
+    color: #7A7D7D;
+    margin-bottom: 40px;
+}
+
+/* Estilos do container de serviços */
+.service-list {
+    display: flex;
+    flex-wrap: wrap; /* Permite quebra de linha para os itens */
+    justify-content: center; /* Centraliza os itens na linha */
+}
+
+.service-item {
+    flex: 0 0 45%; /* Cada serviço ocupa quase metade do container em telas grandes */
+    max-width: 300px; /* Define uma largura máxima para os itens */
+    padding: 20px;
+    background-color: #FFFBFE;
+    border-radius: 8px;
+    margin: 10px;
+    text-align: left;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Adiciona uma transição suave ao hover */
+}
+
+.service-item .fa-flask {
+    font-size: 20px;
+    color: #94FBAB;
+    margin-bottom: 10px;
+}
+
+.service-item .fa-arrow-right {
+    font-size: 14px;
+    color: #7A7D7D;
+    padding: 2px;
+    
+}
+
+
+.service-item h2 {
+    color: #040403;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.service-item p {
+    color: #7A7D7D;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.service-item a.service-link {
+    text-decoration: none;
+    color: #7A7D7D;
+    font-weight: bold;
+    font-size: 14px;
+    display: inline-block;
+    margin-top: 10px;
+    transition: color 0.3s, transform 0.3s; /* Adiciona transição para cor e transformação */
+}
+
+.service-item a.service-link:hover {
+    color: #040403;
+    text-decoration: underline;
+    transform: translateX(5px); /* Move o texto levemente à direita ao passar o mouse */
+}
+
+.service-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombra mais intensa ao passar o mouse */
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .service-item {
+        flex: 0 0 48%; /* Em telas médias, cada serviço ocupa quase metade do container */
+        max-width: 48%;
+    }
+}
+
+@media (max-width: 768px) {
+    .service-item {
+        flex: 0 0 100%; /* Em dispositivos móveis, mostrar um serviço por vez */
+        max-width: 100%;
+    }
+}

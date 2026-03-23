@@ -1,0 +1,141 @@
+/* Estilos gerais */
+.hero {
+    background-image: url("../../images/hero.png"); /* Ajuste o caminho conforme necessário */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 83vh; /* Altura visual impactante */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #040403;
+    text-align: center; /* Centraliza texto para maior impacto */
+    padding: 20px;
+    position: relative; /* Necessário para a camada de transparência */
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Camada de transparência para melhorar a legibilidade */
+    z-index: 0;
+}
+
+.hero-content {
+    max-width: 1200px;
+    width: 90%; /* Ajuste para uma margem responsiva */
+    background-color: rgba(255, 255, 255, 0.8); /* Fundo sutil para melhor leitura */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra leve para destaque */
+    position: relative; /* Garante que o conteúdo esteja acima da camada de transparência */
+    z-index: 1;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    font-weight: bold;
+    color: #040403; /* Cor forte para o título */
+}
+
+.hero-content h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #94FBAB; /* Cor suave para a subheadline */
+}
+
+.hero-content p {
+    font-size: 20px;
+    margin: 20px 0;
+    color: #7A7D7D; /* Cor suave para descrição */
+}
+
+.btn {
+    background-color: #94FBAB; /* Cor inicial do botão */
+    color: #FFFFFF; /* Cor do texto no estado normal */
+    border: 2px solid #040403; /* Borda visível para melhor definição */
+    padding: 10px 20px; /* Espaçamento interno adequado */
+    text-decoration: none; /* Remove sublinhado de links, se aplicável */
+    border-radius: 4px; /* Bordas arredondadas */
+    font-size: 16px; /* Tamanho do texto */
+    font-weight: bold; /* Peso do texto */
+    display: inline-block; /* Permite que o botão seja alinhado como um elemento de bloco inline */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Transição suave para propriedades */
+    cursor: pointer; /* Indica que o elemento é clicável */
+}
+
+.btn i {
+    margin-right: 8px; /* Espaçamento entre o ícone e o texto */
+}
+
+.btn:hover {
+    background-color: #D0CFCF; /* Cor do botão ao passar o mouse */
+    color: #040403; /* Cor do texto ao passar o mouse */
+    border-color: #94FBAB; /* Cor da borda ao passar o mouse */
+}
+
+/* Estilos responsivos */
+@media (max-width: 1024px) {
+    .hero-content h1 {
+        font-size: 40px;
+    }
+
+    .hero-content h2 {
+        font-size: 24px;
+    }
+
+    .hero-content p {
+        font-size: 18px;
+    }
+
+    .btn {
+        font-size: 15px;
+        padding: 8px 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 32px;
+    }
+
+    .hero-content h2 {
+        font-size: 20px;
+    }
+
+    .hero-content p {
+        font-size: 16px;
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content {
+        padding: 10px;
+    }
+
+    .hero-content h1 {
+        font-size: 28px;
+    }
+
+    .hero-content h2 {
+        font-size: 18px;
+    }
+
+    .hero-content p {
+        font-size: 14px;
+    }
+
+    .btn {
+        font-size: 13px;
+        padding: 6px 14px;
+    }
+}

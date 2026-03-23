@@ -1,0 +1,357 @@
+:root {
+    --primary-bg: #FFFFFF;           /* Fundo principal claro */
+    --secondary-bg: #FBFBFF;         /* Fundo secundário muito claro */
+    --highlight-color: #F4E285;      /* Amarelo para atenção */
+    --attention-color: #F4A259;      /* Laranja para alertas críticos */
+    --error-color: #BC4B51;          /* Vermelho para erros e ações críticas */
+    --success-color: #379634;        /* Verde para confirmações e ações positivas */
+    --text-color: #080F0F;           /* Cor do texto principal */
+    --border-color: #EFE9F4;         /* Cor das bordas neutras */
+    --muted-text: #7F8C8D;           /* Cor de texto suavizado */
+    --footer-bg: #7A7D7D;            /* Cor de fundo do rodapé */
+    --input-bg: #FFFBFE;             /* Fundo dos campos de entrada */
+    --input-border: #D0CFCF;         /* Borda dos campos de entrada */
+    --btn-text: #FFFFFF;             /* Texto dos botões */
+    --grafico-bg: #7B904B;           /* Fundo dos gráficos */
+    --color-focus: #94FBAB;          /* Cor de foco */
+}
+
+/* Estilos Gerais */
+body {
+    background-color: var(--secondary-bg);
+    color: var(--text-color);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--primary-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
+}
+
+h1 {
+    color: var(--text-color);
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+hr {
+    border: none;
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(to right, #FFFBFE,#7B904B, #D0CFCF );
+    border-radius: 5px;
+    opacity: 0.8;
+    margin: 20px auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    text-align: center;
+}
+
+th, td {
+    border: 1px solid var(--border-color);
+    padding: 8px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 8px;
+    margin: 4px 0;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    background-color: var(--input-bg);
+    box-sizing: border-box;
+}
+
+.btn-icon-remove {
+    background-color: var(--error-color);
+    border: none;
+    color: var(--btn-text);
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 15px;
+    display: inline-block;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+}
+
+.btn-icon-edit {
+    background-color: var(--highlight-color);
+    border: none;
+    color: var(--btn-text);
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 15px;
+    display: inline-block;
+    margin-left: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-add {
+    background-color: var(--grafico-bg);
+    border: none;
+    color: var(--btn-text);
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 15px;
+    display: inline-block;
+    margin: 10px;
+    transition: background-color 0.3s;
+}
+
+.btn-nav {
+    background-color: var(--footer-bg);
+    border: none;
+    color: var(--btn-text);
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+    display: inline-block;
+    margin: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-icon-remove:hover{
+    background-color: #bc4b51c0;
+}
+.btn-icon-edit:hover{
+    background-color: #f4e285d7;
+}
+.btn-add:hover{
+    background-color: #7b904bad;
+}
+.btn-nav:hover {
+    background-color: var(--input-border);
+}
+
+.action-buttons i {
+    cursor: pointer;
+}
+
+.navigation-buttons {
+    margin-top: 20px;
+    text-align: right;
+}
+/* Estilo específico para o campo "Nome da Simulação" */
+#nome_simulacao {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    color: var(--text-color);
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#nome_simulacao:focus {
+    border-color: var(--color-focus);
+    box-shadow: 0 0 5px rgba(148, 251, 171, 0.5); /* Adiciona um leve brilho */
+    outline: none; /* Remove a borda padrão de foco */
+}
+
+label[for="nome_simulacao"] {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--text-color);
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Estilo específico para o campo "Massa a ser Encontrada" */
+#massa_alvo {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    color: var(--text-color);
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#massa_alvo:focus {
+    border-color: var(--color-focus);
+    box-shadow: 0 0 5px rgba(148, 251, 171, 0.5); /* Adiciona um leve brilho */
+    outline: none; /* Remove a borda padrão de foco */
+}
+
+label[for="massa_alvo"] {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--text-color);
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Estilo para o rótulo */
+label[for="csv_file"] {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--text-color);
+    margin-right: 10px;
+    flex: 1;
+}
+
+/* Estilo para o campo de upload */
+#csv_file {
+    flex: 2;
+    padding: 10px;
+    font-size: 14px;
+    color: var(--text-color);
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#csv_file:focus {
+    border-color: var(--color-focus);
+    box-shadow: 0 0 5px rgba(148, 251, 171, 0.5); /* Adiciona um leve brilho */
+    outline: none;
+}
+
+/* Estilo para o botão de ler CSV */
+.btn-add {
+    background-color: var(--grafico-bg);
+    border: none;
+    color: var(--btn-text);
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 15px;
+    display: inline-block;
+    margin-left: 10px;
+    transition: background-color 0.3s;
+}
+
+.btn-add:hover {
+    background-color: #7b904bad;
+}
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+        margin: 15px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    th, td {
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    .input-field {
+        padding: 6px;
+    }
+
+    .btn-icon-remove, .btn-icon-edit {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 4px 6px;
+        font-size: 13px;
+        width: 100%;          /* Ocupa toda a largura */
+        margin-bottom: 5px;   /* Adiciona espaço entre os botões */
+    }
+
+    .btn-add, .btn-nav {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+
+
+    .container {
+        margin-left: 220px; /* Espaço para a sidebar */
+    }
+
+    /* Se a sidebar estiver muito larga, permite que o container ajuste */
+    .container.expanded {
+        margin-left: 0;
+    }
+    #csv_file {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+
+
+    /* Para telas ainda menores, o conteúdo se ajusta */
+    @media (max-width: 480px) {
+        .container {
+            padding: 10px;
+            margin: 10px;
+        }
+
+        h1 {
+            font-size: 18px;
+        }
+
+        hr {
+            width: 90%;
+        }
+
+        table {
+            font-size: 12px;
+        }
+
+        th, td {
+            padding: 4px;
+            font-size: 11px;
+        }
+
+        .input-field {
+            padding: 4px;
+            font-size: 12px;
+        }
+
+        .btn-icon-remove, .btn-icon-edit {
+            display: flex;
+            flex-direction: column; /* Alinha os botões verticalmente */
+            width: 100%;             /* Largura total */
+            margin-bottom: 5px;
+            padding: 3px 5px;
+            font-size: 12px;
+        }
+
+        .btn-add, .btn-nav {
+            padding: 5px 10px;
+            font-size: 13px;
+        }
+
+        
+
+        .container {
+            margin-left: 0;  /* Reseta o margin-left para ocupar o espaço total */
+        }
+    }
+}
