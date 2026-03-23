@@ -83,7 +83,7 @@ A função de avaliação foi desenvolvida para equilibrar dois critérios princ
 A massa total da solução candidata é calculada por:
 
 $$
-M_{solução} = \sum_{i=1}^{n} n_i \cdot m_i \tag{1}
+M_{solução} = \sum_{i=1}^{n} n_i \cdot m_i
 $$
 
 em que $M_{solução}$ representa a massa total da solução candidata, $n_i$ é o número de unidades do componente $i$, e $m_i$ é a massa molar do componente $i$.
@@ -91,13 +91,13 @@ em que $M_{solução}$ representa a massa total da solução candidata, $n_i$ é
 A diferença absoluta entre a massa da solução candidata e a massa ideal esperada é dada por:
 
 $$
-\Delta M = \left| M_{solução} - M_{ideal} \right| \tag{2}
+\Delta M = \left| M_{solução} - M_{ideal} \right| 
 $$
 
 Em seguida, calcula-se a distância de Manhattan entre a solução analisada e a solução predita pela rede neural:
 
 $$
-D_{Manhattan} = \sum_{i=1}^{n} \left| n_i - b_i \right| \tag{3}
+D_{Manhattan} = \sum_{i=1}^{n} \left| n_i - b_i \right| 
 $$
 
 em que $n_i$ representa o valor do componente $i$ na solução candidata e $b_i$ representa o valor correspondente predito pela MLP.
@@ -105,7 +105,7 @@ em que $n_i$ representa o valor do componente $i$ na solução candidata e $b_i$
 A diferença relativa por componente é calculada por:
 
 $$
-P_{relativa,i} = \frac{\left|n_i - b_i\right|}{b_i} \tag{4}
+P_{relativa,i} = \frac{\left|n_i - b_i\right|}{b_i} 
 $$
 
 Com base nessa diferença relativa, define-se o multiplicador de penalização:
@@ -115,7 +115,7 @@ M = 1 + \sum_{i=1}^{n}
 \begin{cases}
 P_{relativa,i} + MLP\_WEIGHT, & \text{se } P_{relativa,i} \geq 1 \\
 P_{relativa,i} - 0.5 + MLP\_WEIGHT, & \text{se } 0.5 \leq P_{relativa,i} < 1
-\end{cases} \tag{5}
+\end{cases} 
 $$
 
 Esse termo penaliza soluções que se afastam significativamente da composição estimada pela rede neural, favorecendo candidatos mais coerentes com a predição inicial.
@@ -123,7 +123,7 @@ Esse termo penaliza soluções que se afastam significativamente da composição
 Por fim, o score final utilizado pelo algoritmo genético é dado por:
 
 $$
-S = \left( \left| M_{sol} - M_{ideal} \right| \times MASS_{WEIGHT} \times M \right) + M \tag{6}
+S = \left( \left| M_{sol} - M_{ideal} \right| \times MASS_{WEIGHT} \times M \right) + M 
 $$
 
 em que $S$ representa o valor da função objetivo a ser minimizado. Essa formulação integra o erro de massa e a divergência em relação à predição da MLP, conduzindo o algoritmo genético para soluções mais viáveis e quimicamente consistentes.
