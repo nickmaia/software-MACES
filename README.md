@@ -149,7 +149,14 @@ Os resultados obtidos no estudo mostraram desempenho promissor:
 - Aumento da acurácia perfeita para **0.11** no cenário com massa atribuída.
 - Limitações observadas quando a massa precisava ser predita, com aumento do MAE de **3.95 para 4.85**.
 
+<img width="672" height="411" alt="{4F8BFA1E-36DF-4487-8463-8C3B1F897562}" src="https://github.com/user-attachments/assets/0bf06b48-860d-4d58-b158-7fd2b3c37c85" />
+<img width="674" height="429" alt="{67CB1EE8-DA0D-4827-83A1-3A15C603A0CF}" src="https://github.com/user-attachments/assets/61d13c7f-b4e3-4943-a5f4-4317175a12fb" />
+
+
 Esses resultados indicam que a integração entre MLP e algoritmo genético é especialmente útil quando há informação prévia da massa do composto.
+
+<img width="620" height="707" alt="{7448722E-5E8B-4339-BAB6-B71368FABC5E}" src="https://github.com/user-attachments/assets/15b80f83-4e75-4996-b56e-29ec6e34cb86" />
+
 
 ## Tecnologias utilizadas
 
